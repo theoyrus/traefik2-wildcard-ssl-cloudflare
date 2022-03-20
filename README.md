@@ -146,9 +146,7 @@ Sebagai contoh sudah ada direktori web-sample. Terdapat konfigurasi di file .env
 
 **.env**, save as dari **.env.example**
 
-```DOMAIN=web.domain.tld``` adalah path ataupun domain yang akan kita tentukan sebagai entrypoint container app kita diakses, contoh ini menggunakan subdomain, anda bisa mengatur misalnya sebagai alamat utama domain.tld jika ingin port 80 VPS kita mengakses web ini.
-
-Atau jika ingin di dalam sebuah path, maka isiannya kita ubah menjadi misalnya ```DOMAIN=domain.tld/web```, maka ketika ada entrypoint https://domain.tld/web si traefik akan membaca entrypoint tersebut sebagai route yang akan mengakses web kita di dalam docker.
+```DOMAIN=web.domain.tld``` adalah subdomain ataupun domain yang akan kita tentukan sebagai entrypoint container app kita diakses, contoh ini menggunakan subdomain, anda bisa mengatur misalnya sebagai alamat utama domain.tld jika ingin port 80 VPS kita mengakses web ini.
 
 ```TR_APP=web``` ini adalah kode unik dari container kita, misalnya kita namai web sebagai identitas instance/container.
 
