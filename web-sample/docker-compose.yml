@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  web:
+    container_name: nginx-alpine-sample
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    # ports:
+    #  - "81:80"
+    volumes:
+      - ./www:/www
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    network_mode: bridge
+    labels:
+      - "traefik.enable=true"
+
+      # beri nama router unik, entrypoint ambil dari traefik.yml
+      - "traefik.http.routers.${TR_APP}-secure.entrypoints=https"
+      # beri nama router unik & tentukan domain atau pathnya
+      - "traefik.http.routers.${TR_APP}-secure.rule=Host(`${DOMAIN}`)"
+      # jika pakai path, uncomment baris dibawah ini
+      # - "traefik.http.routers.${TR_APP}-secure.rule=Host(`${DOMAIN}`) && PathPrefix(`/${TR_PATH}`)"
+      # servicename ini, samakan dengan baris dibawah ini
+      - "traefik.http.routers.${TR_APP}-secure.service=${TR_APP}-secure"
+      # ya, servicename yg ini, begitupun port yang di-expose
+      - "traefik.http.services.${TR_APP}-secure.loadbalancer.server.port=${TR_PORT}"
+      - "traefik.http.routers.${TR_APP}-secure.tls=true"
