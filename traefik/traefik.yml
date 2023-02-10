@@ -11,6 +11,8 @@ providers:
     endpoint: "unix:///var/run/docker.sock"
     watch: true
     exposedByDefault: false
+    # atur nama network untuk dikelola traefik
+    network: proxy
 
   # custom jika ada provider selain docker, misal apache/nginx
   # file:
